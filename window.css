@@ -1,0 +1,50 @@
+body {
+  font-family: monospace;
+  background-color: white;
+  height: 500px;
+  width: 500px;
+}
+
+form {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column-reverse;
+}
+
+fieldset {
+  border: 0 none;
+  display: grid;
+  margin: 0;
+}
+
+legend {
+  font-weight: bold;
+}
+
+label {
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.5rem 0.25rem;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+label:hover {
+  background-color: rgba(0,50,10,0.05);
+  cursor: pointer;
+}
+
+label input[type="checkbox"] {
+  order: -1;
+  transform: translateY(0.2rem);
+}
+
+button {
+  background-color: #05A134;
+  border-radius: 0.2rem;
+  padding: 0.5rem 0.25rem;
+  cursor: pointer;
+  font: inherit;
+}
+
