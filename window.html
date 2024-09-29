@@ -6,15 +6,31 @@
     <script src="window.js"></script>
   </head>
   <body>
-    <form id="form">
-      <fieldset>
-        <legend for="list">common tabs</legend>
-        <fieldset id="tabs-fieldset"></fieldset>
-      </fieldset>
+    <main>
+      <form id="form-open" class="tabs">
+        <fieldset>
+          <legend>common tabs</legend>
+          <div class="tabs-list" id="tabs"></div>
+        </fieldset>
 
-      <fieldset class="submit">
-        <button type="submit">Open tabs</button>
-      </fieldset>
-    </form>
+        <button type="submit" class="green">Open tabs</button>
+      </form>
+
+      <hr />
+
+      <form id="form-add">
+        <fieldset>
+          <legend>add tab</legend>
+          <div class="row">
+            <label>
+              url
+              <input type="url" name="add" placeholder="must be a url" class="input-add" required pattern="https://.*"/>
+            </label>
+
+            <button type="submit" class="green-invert">Add</button>
+          </div>
+        </fieldset>
+      </form>
+    </main>
   </body>
 </html>

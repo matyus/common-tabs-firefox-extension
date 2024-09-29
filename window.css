@@ -5,14 +5,41 @@ body {
   width: 500px;
 }
 
+hr {
+  display: block;
+  width: 50%;
+}
+
+main {
+  display: grid;
+  gap: 1rem;
+}
+
 form {
   display: flex;
   gap: 1rem;
+  flex-direction: column;
+}
+
+.tabs {
   flex-direction: column-reverse;
 }
 
+.tabs-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.row {
+  align-items: baseline;
+  display: grid;
+  grid-template-columns: auto 5rem;
+  gap: 1rem;
+  width: 100%;
+}
+
 fieldset {
-  border: 0 none;
+  border: 1px outset lightgray;
   display: grid;
   margin: 0;
 }
@@ -40,11 +67,38 @@ label input[type="checkbox"] {
   transform: translateY(0.2rem);
 }
 
+input[type="url"] {
+}
+
+input[type="url"]:not(:placeholder-shown):invalid {
+  outline: 2px solid red;
+}
+
 button {
-  background-color: #05A134;
+  background-color: #fafafa;
+  border-color: #f1f1f1;
   border-radius: 0.2rem;
   padding: 0.5rem 0.25rem;
   cursor: pointer;
   font: inherit;
 }
 
+button.gren-invert {
+  color: green;
+}
+
+button.green {
+  background-color: #05A134;
+  border-color: darkgreen;
+}
+
+button.gray {
+  color: #aa0000;
+}
+
+.input-add {
+  flex: 1 100%;
+  border-radius: 0.2rem;
+  padding: 0.5rem 0.25rem;
+  font: inherit;
+}

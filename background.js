@@ -5,7 +5,6 @@ const { local } = chrome.storage;
 window.addEventListener('DOMContentLoaded', (event) => {
   function onGetError(error) {
     console.log('get Error', { error });
-    handleSetTabs();
   }
   function onSetError(error) { console.log('set Error', { error }); }
 
@@ -13,7 +12,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     console.log('set Success', { success });
   }
 
-  function handleSetTabs() {
+  function initialTabs() {
     const tabs = [
       {
         url: 'https://mail.google.com/mail/u/0/',
@@ -37,7 +36,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     if (commonTabs === undefined || !commonTabs.length || commonTabs.length === 0) {
       console.log('no tabs exist');
-      handleSetTabs();
+      initialTabs();
     } else {
       console.log('tabs exist, doing nothing');
     }
