@@ -25,6 +25,15 @@ function handleSubmitOpen(event) {
   }
 }
 
+function handleOpenTab(event) {
+  event.preventDefault();
+
+  chrome.tabs.create({
+    active: true,
+    url: event.target.href
+  });
+}
+
 async function handleSubmitAdd(event) {
   event.preventDefault();
 
@@ -98,9 +107,14 @@ function renderCommonTabs(commonTabs) {
       checkbox.setAttribute('checked', tab.checked);
     }
 
+    const anchor = document.createElement('a');
+    anchor.innerText = tab.url;
+    anchor.href = tab.url;
+    anchor.addEventListener('click', handleOpenTab);
+
     const label = document.createElement('label');
-    label.textContent = tab.url;
-    label.appendChild(checkbox)
+    label.appendChild(anchor);
+    label.appendChild(checkbox);
 
     const removeButton = document.createElement('button');
     removeButton.className = 'button-remove';
