@@ -30,7 +30,7 @@ export AMO_JWT_SECRET="ABC123"
 ```
 
 ```
-make sign
+make deploy
 ```
 
 Dont't forget to version bump the manifest.

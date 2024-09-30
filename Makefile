@@ -1,4 +1,4 @@
-.PHONY: init run build
+.PHONY: init run deploy
 
 init:
 	brew install web-ext
@@ -6,5 +6,6 @@ init:
 dev:
 	web-ext run
 
-sign:
+deploy:
+	web-ext build
 	web-ext sign --channel=unlisted --api-key=$(AMO_JWT_ISSUER) --api-secret=$(AMO_JWT_SECRET)
