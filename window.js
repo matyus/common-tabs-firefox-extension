@@ -1,16 +1,14 @@
-/*
- *This file is loaded in the browser_action (window.html) file
- */
-
-console.log('window.js');
-
 const { local } = chrome.storage;
+
+const defaultTab = {
+  url: 'https://example.com (add new tab to replace)',
+  checked: true
+};
+
 const fetchTabs = async () => await local.get('commonTabs').then(tabs => tabs);
 const setTabs = async (tabs) => await local.set({ commonTabs: tabs });
 
 function render() { window.location.reload(); }
-function onGetError(error) { console.log('get Error', { error }); }
-function onSetError(error) { console.log('set Error', { error }); }
 
 function handleSubmitOpen(event) {
   event.preventDefault();
@@ -22,7 +20,6 @@ function handleSubmitOpen(event) {
     chrome.tabs.create({
       active: false,
       pinned: true,
-      // discarded: true,
       url: url
     });
   }
@@ -34,15 +31,16 @@ async function handleSubmitAdd(event) {
   const formData = new FormData(event.target);
   const entries = Object.fromEntries(formData);
   const { commonTabs } = await fetchTabs();
+  const tabs = Array.isArray(commonTabs) ? commonTabs : [];
 
   for (key in entries) {
-    commonTabs.push({
+    tabs.push({
       url: entries[key],
       checked: false
     });
   }
 
-  const response = setTabs(commonTabs);
+  setTabs(tabs);
 
   render();
 }
@@ -54,9 +52,11 @@ async function handleRemove(event) {
 
   const { commonTabs } = await fetchTabs();
 
+  if (!Array.isArray(commonTabs)) return null;
+
   commonTabs.splice(index, 1);
 
-  const response = await setTabs(commonTabs);
+  await setTabs(commonTabs);
 
   render();
 }
@@ -66,11 +66,13 @@ async function handleCheckboxToggle(event) {
 
   const { commonTabs } = await fetchTabs();
 
+  if (!Array.isArray(commonTabs)) return null;
+
   const { index } = event.target.dataset;
 
   commonTabs[Number(index)].checked = !event.target.checked;
 
-  const response = await setTabs(commonTabs);
+  await setTabs(commonTabs);
 
   render();
 }
@@ -78,7 +80,6 @@ async function handleCheckboxToggle(event) {
 function renderCommonTabs(commonTabs) {
   const fragment = document.createDocumentFragment();
 
-  // for(const tab of commonTabs) {
   for (var index = 0; index < commonTabs.length; index++) {
     const tab = commonTabs[index];
 
@@ -119,11 +120,11 @@ function renderCommonTabs(commonTabs) {
 
 window.addEventListener('DOMContentLoaded', async (event) => {
   const { commonTabs } = await fetchTabs();
+  const tabs = Array.isArray(commonTabs) ? commonTabs : [defaultTab];
 
   document.querySelector('#form-open').addEventListener('submit', handleSubmitOpen)
   document.querySelector('#form-add').addEventListener('submit', handleSubmitAdd)
-
-  const tabsFragment = renderCommonTabs(commonTabs);
+  const tabsFragment = renderCommonTabs(tabs);
 
   document.querySelector('#tabs-list').append(tabsFragment);
 });
