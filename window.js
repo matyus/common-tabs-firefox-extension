@@ -21,7 +21,8 @@ function handleSubmitOpen(event) {
   for (url in entries) {
     chrome.tabs.create({
       active: false,
-      discarded: true,
+      pinned: true,
+      // discarded: true,
       url: url
     });
   }
@@ -53,7 +54,7 @@ async function handleRemove(event) {
 
   const { commonTabs } = await fetchTabs();
 
-  commonTabs.splice(index,1);
+  commonTabs.splice(index, 1);
 
   const response = await setTabs(commonTabs);
 
@@ -66,8 +67,6 @@ async function handleCheckboxToggle(event) {
   const { commonTabs } = await fetchTabs();
 
   const { index } = event.target.dataset;
-
-  console.log({ commonTabs }, { index }, event.target.checked);
 
   commonTabs[Number(index)].checked = !event.target.checked;
 
@@ -82,7 +81,6 @@ function renderCommonTabs(commonTabs) {
   // for(const tab of commonTabs) {
   for (var index = 0; index < commonTabs.length; index++) {
     const tab = commonTabs[index];
-    console.log(tab);
 
     const container = document.createElement('div');
     container.className = 'row';
@@ -104,7 +102,7 @@ function renderCommonTabs(commonTabs) {
     label.appendChild(checkbox)
 
     const removeButton = document.createElement('button');
-    removeButton.className = 'remove-button gray';
+    removeButton.className = 'button-remove';
     removeButton.innerText = 'remove';
     removeButton.name = `remove-${index}`;
     removeButton.value = index;
@@ -127,6 +125,6 @@ window.addEventListener('DOMContentLoaded', async (event) => {
 
   const tabsFragment = renderCommonTabs(commonTabs);
 
-  document.querySelector('#tabs').append(tabsFragment);
+  document.querySelector('#tabs-list').append(tabsFragment);
 });
 

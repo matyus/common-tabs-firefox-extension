@@ -1,8 +1,13 @@
 body {
   font-family: monospace;
+  font-size: 11px;
   background-color: white;
   height: 500px;
   width: 500px;
+}
+
+body * {
+  box-sizing: border-box;
 }
 
 hr {
@@ -16,13 +21,31 @@ main {
 }
 
 form {
-  display: flex;
+  display: grid;
   gap: 1rem;
-  flex-direction: column;
 }
 
 .tabs {
-  flex-direction: column-reverse;
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
+.open {
+  background-color: white;
+  padding: 0.5rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  order: -1;
+  text-align: right;
+  width: 100%;
+  border-bottom: 1px outset lightgray;
+}
+
+.open button {
+  width: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .tabs-list {
@@ -53,7 +76,6 @@ label {
   gap: 1rem;
   align-items: baseline;
   padding: 0.5rem 0.25rem;
-  font-size: 12px;
   line-height: 1.4;
 }
 
@@ -71,7 +93,11 @@ input[type="url"] {
 }
 
 input[type="url"]:not(:placeholder-shown):invalid {
-  outline: 2px solid red;
+  border-color: red;
+}
+
+input[type="url"]:not(:placeholder-shown):invalid:hover {
+  border-color: firebrick;
 }
 
 button {
@@ -83,17 +109,51 @@ button {
   font: inherit;
 }
 
-button.gren-invert {
-  color: green;
+.button-add {
+  color: blue;
 }
 
-button.green {
-  background-color: #05A134;
+.button-add:hover {
+  background-color: lightcyan;
+  border-color: paleturquoise;
+}
+
+.button-add:active {
+  color: mediumblue;
+  background-color: turquoise;
+  border-color: mediumturquoise;
+}
+
+
+.button-open {
+  background-color: lightgreen;
+  border-color: palegreen;
+}
+
+.button-open:hover {
+  color: darkgreen;
+  background-color: palegreen;
+}
+
+.button-open:active {
+  color: black;
+  background-color: limegreen;
   border-color: darkgreen;
 }
 
-button.gray {
-  color: #aa0000;
+.button-remove {
+  color: firebrick;
+}
+
+.button-remove:hover {
+  border-color: lightpink;
+  background-color: pink;
+}
+
+.button-remove:active {
+  color: darkred;
+  border-color: pink;
+  background-color: palevioletred;
 }
 
 .input-add {
@@ -101,4 +161,16 @@ button.gray {
   border-radius: 0.2rem;
   padding: 0.5rem 0.25rem;
   font: inherit;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.footer form {
+  background-color: white;
 }

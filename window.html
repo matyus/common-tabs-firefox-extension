@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Common tabs</title>
+    <title>common tabs</title>
     <link href="window.css" rel="stylesheet" title="Default"/>
     <script src="window.js"></script>
   </head>
@@ -10,27 +10,35 @@
       <form id="form-open" class="tabs">
         <fieldset>
           <legend>common tabs</legend>
-          <div class="tabs-list" id="tabs"></div>
+          <div class="tabs-list" id="tabs-list"></div>
         </fieldset>
 
-        <button type="submit" class="green">Open tabs</button>
+        <div class="open">
+          <button type="submit" class="button-open">open tabs</button>
+        </div>
       </form>
 
-      <hr />
+      <div class="footer">
+        <form id="form-add">
+          <fieldset>
+            <legend>add tab</legend>
+            <div class="row">
+              <label>
+                url
+                <input
+                  type="url"
+                  name="add"
+                  placeholder="http://example.com/"
+                  class="input-add"
+                  required pattern="https://.*"
+                />
+              </label>
 
-      <form id="form-add">
-        <fieldset>
-          <legend>add tab</legend>
-          <div class="row">
-            <label>
-              url
-              <input type="url" name="add" placeholder="must be a url" class="input-add" required pattern="https://.*"/>
-            </label>
-
-            <button type="submit" class="green-invert">Add</button>
-          </div>
-        </fieldset>
-      </form>
+              <button type="submit" class="button-add">add</button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
     </main>
   </body>
 </html>

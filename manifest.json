@@ -1,10 +1,12 @@
 {
   "manifest_version": 3,
   "name": "Common tabs",
-  "version": "2.0",
+  "version": "4.0",
   "description": "Easily open the usual suspects",
   "icons": {
     "128": "icon_128.png",
+    "96": "icon_96.png",
+    "48": "icon_48.png",
     "16": "icon_16.png"
   },
   "background": {
